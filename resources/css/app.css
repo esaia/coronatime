@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.statistic-title {
+    @apply font-bold md:text-4xl text-2xl;
+}
+
+.statistic-div {
+    @apply rounded-xl p-3 flex flex-col justify-center items-center gap-4;
+}
