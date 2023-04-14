@@ -5,15 +5,15 @@
 
         <x-auth.header title="Welcome to Coronatime" desc="Please enter required info to sign up" />
 
-        <x-form.layout action="/register" method="POST">
+        <x-form.layout action="{{ route('register.store') }}" method="POST">
             <x-form.input name="username" label="Username" placeholder="Enter unique username" />
             <p class="text-gray-400 text-sm font-light pt-1">Username should be unique, min 3 symbols </p>
 
-            <x-form.input name="email" label="Email" placeholder="Enter your email" />
+            <x-form.input name="email" label="Email" placeholder="Enter your email" type="email" />
 
 
-            <x-form.input name="password" label="Password" placeholder="Fill in password" />
-            <x-form.input name="repeat" label="Repeat password" placeholder="Repeat password" />
+            <x-form.input name="password" label="Password" placeholder="Fill in password" type="password" />
+            <x-form.input name="repeat" label="Repeat password" placeholder="Repeat password" type="password" />
 
 
 

@@ -1,57 +1,43 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ConfirmationController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', function () {
-    return view('authorization.login');
+Route::controller(SessionController::class)->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', 'index')->name('login.index');
+        Route::post('/login', 'store')->name('login.store');
+    });
 });
 
 
-Route::get('/register', function () {
+Route::controller(RegisterController::class)->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/register', 'index')->name('register.index');
+        Route::post('/register', 'store')->name('register.store');
 
-    return view('authorization.register');
-});
-
-
-Route::get('/reset', function () {
-
-    return view('authorization.reset-password');
-});
-
-
-Route::get('/newpass', function () {
-
-    return view('authorization.new-password');
-});
-
-
-Route::get('/confirmation', function () {
-
-    return view('authorization.email-confirmation');
+    });
 });
 
 
 
-Route::get('/resetconfirmation', function () {
 
-    return view('authorization.reset-confirmation');
+Route::controller(ConfirmationController::class)->group(function () {
+    Route::get('/confirmation', 'emailconfirm')->name('confirmation.emailconfirm');
+    Route::get('/reset', 'reset')->name('confirmation.reset');
+    Route::get('/newpass', 'newpass')->name('confirmation.newpass');
+    Route::get('/resetconfirmation', 'resetconfirmation')->name('confirmation.resetconfirmation');
+    Route::get('/registerconfirmation', 'registerconfirmation')->name('confirmation.registerconfirmation');
+
 });
 
 
 
-Route::get('/registerconfirmation', function () {
 
-    return view('authorization.register-confirmation');
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/worldwide', 'worldwide')->name('dashboard.worldwide');
+    Route::get('/country', 'country')->name('dashboard.country');
 });
-
-
-Route::get('/worldwide', function () {
-
-    return view('dashboard.worldwide');
-})->name('worldwide');
-
-Route::get('/country', function () {
-
-    return view('dashboard.country');
-})->name('country');
