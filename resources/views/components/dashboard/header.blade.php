@@ -17,7 +17,11 @@
 
             <div class=" hidden  md:flex justify-center  items-center gap-5  ">
                 <h2 class="border-r-[1px] border-gray-200 pr-5 py-2 font-bold">Takeshi K.</h2>
-                <button>Log Out</button>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"> Log Out </button>
+                </form>
             </div>
 
             <img src="images/burger.svg" class="cursor-pointer md:hidden" />

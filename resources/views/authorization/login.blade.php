@@ -6,16 +6,21 @@
         <x-auth.header title="Welcome back" desc="Welcome back! Please enter your details" />
 
 
-        <x-form.layout action="/" method="POST">
-            <x-form.input name="username" label="Username" placeholder="Enter unique username or email" />
-            <x-form.input name="password" label="Password" placeholder="Fill in password" />
+
+
+        <x-form.layout action="{{ route('login.store') }}" method="POST">
+            <x-form.input name="email" label="Username" placeholder="Enter unique username or email" />
+            <x-form.input name="password" label="Password" placeholder="Fill in password" type="password" />
 
 
 
             <div class="flex items-center justify-between py-5">
 
                 <div class="flex gap-2 items-center justify-center">
-                    <input id="default-checkbox" type="checkbox" class="border-5 border-solid border-red-600 ">
+
+
+                    <input name="remember" id="default-checkbox" type="checkbox"
+                        class="border-5 border-solid border-red-600 ">
 
                     <p>Remember this device</p>
                 </div>

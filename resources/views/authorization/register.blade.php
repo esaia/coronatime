@@ -13,7 +13,8 @@
 
 
             <x-form.input name="password" label="Password" placeholder="Fill in password" type="password" />
-            <x-form.input name="repeat" label="Repeat password" placeholder="Repeat password" type="password" />
+            <x-form.input name="password_confirmation" label="Repeat password" placeholder="Repeat password"
+                type="password" />
 
 
 

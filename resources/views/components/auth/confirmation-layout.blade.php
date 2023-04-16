@@ -11,5 +11,7 @@
         <p class="text-center">{{ $title }}</p>
     </div>
 
-    <x-form.button title="SIGN IN" class="mt-20" />
+    <a href="{{ route('login') }}" class="w-full">
+        <x-form.button title="SIGN IN" class="mt-20" />
+    </a>
 </div>

@@ -8,7 +8,7 @@ class ConfirmationController extends Controller
 {
     public function emailconfirm()
     {
-        return view('authorization.email-confirmation');
+        return view('authorization.verify.email-confirmation');
 
     }
 
@@ -27,12 +27,12 @@ class ConfirmationController extends Controller
 
     public function resetconfirmation()
     {
-        return view('authorization.reset-confirmation');
+        return view('authorization..verify.reset-confirmation');
     }
 
     public function registerconfirmation()
     {
-        return view('authorization.register-confirmation');
+        return view('authorization.verify.register-confirmation');
     }
 
 }
