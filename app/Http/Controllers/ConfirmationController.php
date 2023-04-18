@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Login\ResetRequest;
+use App\Http\Requests\Login\UpdatePasswordRequest;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -17,7 +19,7 @@ class ConfirmationController extends Controller
     {
         $request->fulfill();
         auth()->logout();
-        return to_route('confirmation.register_confirmation');
+        return to_route('confirmation.register-confirmation');
     }
 
 
@@ -43,10 +45,8 @@ class ConfirmationController extends Controller
 
     }
 
-    public function resetPassword(Request $request)
+    public function resetPassword(ResetRequest $request)
     {
-
-        $request->validate(['email' => 'required|email']);
 
 
         $status = Password::sendResetLink(
@@ -54,7 +54,7 @@ class ConfirmationController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-                    ? to_route('password_verify')
+                    ? to_route('password-verify')
                     : back()->withErrors(['email' => __($status)]);
 
     }
@@ -65,15 +65,8 @@ class ConfirmationController extends Controller
         return view('authorization.new-password', ['token' => $token]);
     }
 
-    public function update(Request $request)
+    public function update(UpdatePasswordRequest $request)
     {
-
-
-        $request->validate([
-              'token' => 'required',
-              'email' => 'required|email',
-              'password' => 'required|min:3|confirmed',
-          ]);
 
 
         $status = Password::reset(
