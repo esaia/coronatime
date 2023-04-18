@@ -24,6 +24,7 @@ Route::controller(RegisterController::class)->group(function () {
 });
 
 
+
 Route::controller(ConfirmationController::class)->group(function () {
     Route::get('/email/verify/{id}/{hash}', 'verify')->middleware(['auth', 'signed'])->name('verification.verify');
 
