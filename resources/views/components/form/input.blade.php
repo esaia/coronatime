@@ -1,7 +1,7 @@
     @props(['name', ' label', 'placeholder' => 'your text...', 'type' => 'text'])
 
 
-    <div class="flex flex-col  gap-2 mt-5">
+    <div class="flex flex-col  gap-2 mt-5 w-full">
         <label class="font-bold" for="">{{ $label }}</label>
 
         <div

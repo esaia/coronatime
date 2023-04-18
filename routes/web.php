@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ConfirmationController;
@@ -23,6 +24,8 @@ Route::controller(RegisterController::class)->group(function () {
     });
 });
 
+
+Route::post('/language', [LanguageController::class, 'index'])->name('language');
 
 
 Route::controller(ConfirmationController::class)->group(function () {

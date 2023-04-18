@@ -10,7 +10,7 @@
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit"> Log Out </button>
+                    <button type="submit"> {{ __('dashboard.logout') }} </button>
                 </form>
             </div>
 

@@ -3,14 +3,17 @@
 
     <x-auth.layout>
 
-        <x-auth.header title="Welcome back" desc="Welcome back! Please enter your details" />
+
+        <x-auth.header title="{{ __('login.title') }}" desc="{{ __('login.desc') }}" />
 
 
 
 
         <x-form.layout action="{{ route('login.store') }}" method="POST">
-            <x-form.input name="email" label="Username" placeholder="Enter unique username or email" />
-            <x-form.input name="password" label="Password" placeholder="Fill in password" type="password" />
+            <x-form.input name="email" label="{{ __('login.username_label') }}"
+                placeholder="{{ __('login.username_placeholder') }}" />
+            <x-form.input name="password" label="{{ __('login.password_label') }}"
+                placeholder="{{ __('login.password_placeholder') }}" type="password" />
 
 
 
@@ -21,22 +24,22 @@
                     <input name="remember" id="default-checkbox" type="checkbox"
                         class="border-5 border-solid border-red-600 ">
 
-                    <p>Remember this device</p>
+                    <p>{{ __('login.remember') }}</p>
                 </div>
 
                 <a href="{{ route('password.request') }}">
-                    <p class="text-[#2029F3] cursor-pointer">Forgot password?</p>
+                    <p class="text-[#2029F3] cursor-pointer">{{ __('login.forget') }}</p>
                 </a>
             </div>
 
 
 
-            <x-form.button title="Log In" />
+            <x-form.button title="{{ __('login.button') }}" />
 
-            <p class="font-light text-center p-4 ">Don’t have and account?
+            <p class="font-light text-center p-4 ">{{ __('login.not_have_account') }}
                 <a href="{{ route('register') }}">
                     <span class="font-semibold">
-                        Sign up for free
+                        {{ __('login.sign_up') }}
                     </span>
                 </a>
             </p>

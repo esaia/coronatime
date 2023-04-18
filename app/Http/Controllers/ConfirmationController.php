@@ -98,7 +98,7 @@ class ConfirmationController extends Controller
 
     public function registerConfirmation()
     {
-        return view('authorization.verify.register_confirmation');
+        return view('authorization.verify.register-confirmation');
     }
 
 

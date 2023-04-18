@@ -12,6 +12,6 @@
     </div>
 
     <a href="{{ route('login') }}" class="w-full">
-        <x-form.button title="SIGN IN" class="mt-20" />
+        <x-form.button title="{{ __('login.button') }}" class="mt-20" />
     </a>
 </div>

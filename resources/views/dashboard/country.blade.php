@@ -3,7 +3,8 @@
 
     <div class="my-5  border border-gray-100 w-full max-w-xs flex justify-start items-center rounded-md">
         <img src="/images/search.svg" alt="" class="pl-4">
-        <input type="text" class="w-full h-full p-3 outline-none rounded-md" placeholder="Search by country">
+        <input type="text" class="w-full h-full p-3 outline-none rounded-md"
+            placeholder="{{ __('dashboard.search_placeholder') }}">
     </div>
 
     <div class="relative overflow-x-auto shadow-md rounded-md">
@@ -12,16 +13,16 @@
             <thead class="text-xs text-black  bg-gray-50 ">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Location
+                        {{ __('dashboard.location') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        New cases
+                        {{ __('dashboard.new_cases') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Deaths
+                        {{ __('dashboard.death') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Recovered
+                        {{ __('dashboard.recovered') }}
                     </th>
                 </tr>
             </thead>
