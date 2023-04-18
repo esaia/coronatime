@@ -18,14 +18,15 @@
 
                 <div class="flex gap-2 items-center justify-center">
 
-
                     <input name="remember" id="default-checkbox" type="checkbox"
                         class="border-5 border-solid border-red-600 ">
 
                     <p>Remember this device</p>
                 </div>
 
-                <p class="text-[#2029F3] cursor-pointer">Forgot password?</p>
+                <a href="{{ route('password.request') }}">
+                    <p class="text-[#2029F3] cursor-pointer">Forgot password?</p>
+                </a>
             </div>
 
 
@@ -33,7 +34,7 @@
             <x-form.button title="Log In" />
 
             <p class="font-light text-center p-4 ">Don’t have and account?
-                <a href="/register">
+                <a href="{{ route('register') }}">
                     <span class="font-semibold">
                         Sign up for free
                     </span>

@@ -1,12 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ConfirmationController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::controller(SessionController::class)->group(function () {
     Route::middleware('guest')->group(function () {
@@ -15,10 +13,7 @@ Route::controller(SessionController::class)->group(function () {
     });
 
     Route::post('/logout', 'destroy')->name('logout');
-
-
 });
-
 
 Route::controller(RegisterController::class)->group(function () {
     Route::middleware('guest')->group(function () {
@@ -29,16 +24,22 @@ Route::controller(RegisterController::class)->group(function () {
 });
 
 
-
-
 Route::controller(ConfirmationController::class)->group(function () {
+    Route::get('/email/verify/{id}/{hash}', 'verify')->middleware(['auth', 'signed'])->name('verification.verify');
+
+
     Route::get('/confirmation', 'emailconfirm')->middleware('auth')->name('verification.notice');
+    Route::get('/confirm', 'passwordconfirm')->middleware('guest')->name('password_verify');
 
-    Route::get('/reset', 'reset')->name('confirmation.reset');
-    Route::get('/newpass', 'newpass')->name('confirmation.new_password');
-    Route::get('/resetconfirmation', 'resetconfirmation')->name('confirmation.reset_confirmation');
+    Route::get('/reset', 'reset')->middleware('guest')->name('password.request');
+    Route::post('/forgot-password', 'resetPassword')->middleware('guest')->name('password.email');
 
-    Route::get('/registerconfirmation', 'registerconfirmation')->middleware('guest')->name('confirmation.register_confirmation');
+    Route::get('/reset-password/{token}', 'newPass')->middleware('guest')->name('password.reset');
+    Route::post('/reset-password', 'update')->middleware('guest')->name('password.update');
+
+
+    Route::get('/resetconfirmation', 'resetConfirmation')->name('confirmation.reset_confirmation');
+    Route::get('/registerconfirmation', 'registerConfirmation')->middleware('guest')->name('confirmation.register_confirmation');
 
 });
 
@@ -50,13 +51,3 @@ Route::controller(DashboardController::class)->group(function () {
         Route::get('/country', 'country')->name('dashboard.country');
     });
 });
-
-
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    auth()->logout();
-
-    return to_route('confirmation.register_confirmation');
-
-})->middleware(['auth', 'signed'])->name('verification.verify');

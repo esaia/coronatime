@@ -15,32 +15,42 @@ class SessionController extends Controller
     }
 
 
-      public function store(LoginRequest $request)
-      {
+    public function store(LoginRequest $request)
+    {
 
 
-          $attributes = $request->validated();
+        $attributes = $request->validated();
 
-          if(isset($attributes['remember']) && $attributes['remember']) {
-              $remember=true;
-              unset($attributes['remember']);
-          } else {
-              $remember = false;
-          }
+        if(isset($attributes['remember']) && $attributes['remember']) {
+            $remember=true;
+            unset($attributes['remember']);
+        } else {
+            $remember = false;
+        }
 
-          if (!auth()->attempt($attributes, $remember)) {
-              throw ValidationException::withMessages(['email' =>  __('login.email_error')  ]);
-          }
+        $loginField = filter_var($attributes['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-          session()->regenerate();
-          return to_route('dashboard.worldwide');
+        $attributes[$loginField] = $attributes['email'];
+        if($loginField == 'email') {
+            unset($attributes['username']);
+        } elseif($loginField == 'username') {
+            unset($attributes['email']);
+        };
 
-      }
 
-      public function destroy()
-      {
-          auth()->logout();
-          return to_route('login');
-      }
+        if (!auth()->attempt($attributes, $remember)) {
+            throw ValidationException::withMessages(['email' =>  __('login.email_error')  ]);
+        }
+
+        session()->regenerate();
+        return to_route('dashboard.worldwide');
+
+    }
+
+    public function destroy()
+    {
+        auth()->logout();
+        return to_route('login');
+    }
 
 }

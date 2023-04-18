@@ -1,7 +1,7 @@
 <x-layout>
 
     <x-auth.reset-layout>
-        <x-form.layout action="/" method="POST">
+        <x-form.layout action="{{ route('password.email') }}" method="POST">
             <h1 class="font-bold text-center text-2xl pb-6">Reset Password</h1>
             <x-form.input name="email" label="Email" placeholder="Enter your email" />
 

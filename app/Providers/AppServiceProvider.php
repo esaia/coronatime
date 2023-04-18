@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,6 +38,18 @@ class AppServiceProvider extends ServiceProvider
                 ->line('Click the button below to verify your email address.')
                 ->action('Verify Email Address', $url);
         });
+
+
+
+        ResetPassword::toMailUsing(function (object $notifiable, string $token) {
+            $url = url(route('password.reset', ['token' => $token], false));
+            $url = $url . '?email=' . request()->input('email');
+
+            return (new MailMessage())
+            ->view('email.reset', ['url' => $url])
+                ->subject('Recover password');
+        });
+
 
 
 

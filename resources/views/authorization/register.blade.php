@@ -34,7 +34,7 @@
             <x-form.button title="SIGN UP" />
 
             <p class="font-light text-center p-4 ">Already have an account?
-                <a href="/login">
+                <a href="{{ route('login') }}">
                     <span class="font-semibold"> Log in </span>
                 </a>
             </p>
