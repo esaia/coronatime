@@ -19,7 +19,7 @@ class ConfirmationController extends Controller
     {
         $request->fulfill();
         auth()->logout();
-        return to_route('confirmation.register-confirmation');
+        return to_route('confirmation.register_confirmation');
     }
 
 
@@ -54,7 +54,7 @@ class ConfirmationController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-                    ? to_route('password-verify')
+                    ? to_route('password_verify')
                     : back()->withErrors(['email' => __($status)]);
 
     }
@@ -98,7 +98,7 @@ class ConfirmationController extends Controller
 
     public function registerConfirmation()
     {
-        return view('authorization.verify.register-confirmation');
+        return view('authorization.verify.register_confirmation');
     }
 
 

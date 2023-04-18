@@ -29,7 +29,7 @@ Route::controller(ConfirmationController::class)->group(function () {
 
 
     Route::get('/confirmation', 'emailconfirm')->middleware('auth')->name('verification.notice');
-    Route::get('/confirm', 'passwordconfirm')->middleware('guest')->name('password-verify');
+    Route::get('/confirm', 'passwordconfirm')->middleware('guest')->name('password_verify');
 
     Route::get('/reset', 'reset')->middleware('guest')->name('password.request');
     Route::post('/forgot-password', 'resetPassword')->middleware('guest')->name('password.email');
@@ -38,8 +38,8 @@ Route::controller(ConfirmationController::class)->group(function () {
     Route::post('/reset-password', 'update')->middleware('guest')->name('password.update');
 
 
-    Route::get('/resetconfirmation', 'resetConfirmation')->name('confirmation.reset_confirmation');
-    Route::get('/registerconfirmation', 'registerConfirmation')->middleware('guest')->name('confirmation.register-confirmation');
+    Route::get('/reset-confirmation', 'resetConfirmation')->name('confirmation.reset_confirmation');
+    Route::get('/register-confirmation', 'registerConfirmation')->middleware('guest')->name('confirmation.register_confirmation');
 
 });
 
