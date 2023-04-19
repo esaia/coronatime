@@ -23,10 +23,7 @@ class FetchDataCommand extends Command
      */
     protected $description = 'Fetch data from API (https://devtest.ge/api) and store in database';
 
-    protected function schedule(Schedule $schedule)
-    {
-        $schedule->command('coronatime:fetch-data')->daily();
-    }
+
 
     /**
      * Execute the console command.
