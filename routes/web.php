@@ -53,5 +53,8 @@ Route::controller(DashboardController::class)->group(function () {
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/worldwide', 'worldwide')->name('dashboard.worldwide');
         Route::get('/country', 'country')->name('dashboard.country');
+
+        Route::get('/data', 'sort')->name('dashboard.sort');
+
     });
 });
