@@ -4,36 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
+use PHPUnit\Framework\Constraint\Count;
 
 class DashboardController extends Controller
 {
     public function worldwide()
     {
-        return view('dashboard.worldwide');
+
+        $newCases = Country::sum('confirmed');
+        $recovered = Country::sum('recovered');
+        $deaths = Country::sum('deaths');
+
+
+
+        return view('dashboard.worldwide', ['newCases' => $newCases,'recovered' => $recovered, 'deaths'=> $deaths]);
     }
 
-    public function sort(Request $request)
-    {
-        $sortBy = $request->get('sort_by');
-        $sortOrder = $request->get('sort_order');
 
+
+    public function country(Request $request)
+    {
+
+        $sortBy = request('sortBy') ?? 'confirmed';
+        $sortOrder = request('sortOrder') ?? 'asc';
+
+        $countries = Country::latest()->filter(request(['search']))->get();
 
         if($sortOrder == 'desc') {
-            $data = Country::all()->sortByDesc($sortBy);
+            $countries = $countries->sortByDesc($sortBy);
         } else {
-            $data = Country::all()->sortBy($sortBy);
+            $countries = $countries->sortBy($sortBy);
         }
 
+        return view('dashboard.country', ['countries' => $countries ]);
 
-
-        return view('dashboard.country', ['countries' => $data , 'sortOrder' => $sortOrder, 'sortBy' => $sortBy]);
-
-    }
-
-
-    public function country()
-    {
-        $countries = Country::all();
-        return view('dashboard.country', ['countries' => $countries , 'sortOrder' => 'asc', 'sortBy' => 'name']);
     }
 }
