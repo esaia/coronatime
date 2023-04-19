@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Country;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Console\Scheduling\Schedule;
 
 class FetchDataCommand extends Command
 {
@@ -21,6 +22,11 @@ class FetchDataCommand extends Command
      * @var string
      */
     protected $description = 'Fetch data from API (https://devtest.ge/api) and store in database';
+
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('coronatime:fetch-data')->daily();
+    }
 
     /**
      * Execute the console command.
