@@ -39,7 +39,7 @@ class SessionController extends Controller
 
 
         if (!auth()->attempt($attributes, $remember)) {
-            throw ValidationException::withMessages(['email' =>  __('login.email_error')  ]);
+            throw ValidationException::withMessages(['email' =>  __('login.fail')  ]);
         }
 
         session()->regenerate();

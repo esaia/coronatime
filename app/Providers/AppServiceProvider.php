@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -33,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage())
-            ->view('email.verify', ['url' => $url])
+            ->view(App::isLocale('en') ? 'email.verify' : 'email.verify-ka', ['url' => $url])
                 ->subject('Verify Email Address')
                 ->line('Click the button below to verify your email address.')
                 ->action('Verify Email Address', $url);
@@ -46,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
             $url = $url . '?email=' . request()->input('email');
 
             return (new MailMessage())
-            ->view('email.reset', ['url' => $url])
+            ->view(App::isLocale('en') ? 'email.reset' : 'email.reset-ka', ['url' => $url])
                 ->subject('Recover password');
         });
 

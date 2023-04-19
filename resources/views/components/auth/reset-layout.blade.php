@@ -1,12 +1,4 @@
-<div class="w-full flex justify-center py-10 absolute">
+<div class="w-full flex flex-col gap-8   items-center  h-screen p-4 md:max-w-md m-auto">
     <x-logo />
-
-</div>
-
-
-
-<div class="w-full flex flex-col justify-center  items-center h-screen px-3">
-
     {{ $slot }}
-
 </div>
