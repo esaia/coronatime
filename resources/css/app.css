@@ -1,18 +1,20 @@
 @tailwind base;
 
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
+/* Chrome,
+Edge,
+and Safari *::-webkit-scrollbar {
     width: 4px;
 }
 
 *::-webkit-scrollbar-track {
+    width: 3px;
 }
 
 *::-webkit-scrollbar-thumb {
     border-radius: 14px;
-    height: 40px;
-    background-color: #808189;
-}
+    height: 3px;
+    background-color: #26339b;
+} */
 
 @tailwind components;
 @tailwind utilities;
@@ -23,4 +25,21 @@
 
 .statistic-div {
     @apply rounded-xl p-3 flex flex-col justify-center items-center gap-4;
+}
+
+.thead {
+    @apply px-6 py-4  flex-1 flex font-semibold min-w-[50px];
+}
+
+/* Hide the scrollbar track */
+::-webkit-scrollbar {
+    background-color: transparent;
+    height: 7px;
+    width: 7px;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background-color: #808189;
+    border-radius: 999px;
 }
