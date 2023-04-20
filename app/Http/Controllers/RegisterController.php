@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\Register\RegisterRequest;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class RegisterController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('authorization.register');
 
     }
 
 
-      public function store(RegisterRequest $request)
+      public function store(RegisterRequest $request): RedirectResponse
       {
 
           $attributes = $request->validated();

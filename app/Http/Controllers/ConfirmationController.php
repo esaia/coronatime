@@ -11,11 +11,13 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\RedirectResponse;
 
 class ConfirmationController extends Controller
 {
-    public function verify(EmailVerificationRequest $request)
+    public function verify(EmailVerificationRequest $request): RedirectResponse
     {
         $request->fulfill();
         auth()->logout();
@@ -24,14 +26,14 @@ class ConfirmationController extends Controller
 
 
 
-    public function emailconfirm()
+    public function emailconfirm(): View
     {
         return view('authorization.verify.email-confirmation');
 
     }
 
 
-    public function passwordconfirm()
+    public function passwordconfirm(): View
     {
         return view('authorization.verify.password-confirmation');
     }
@@ -39,13 +41,13 @@ class ConfirmationController extends Controller
 
 
 
-    public function reset()
+    public function reset(): View
     {
         return view('authorization.reset-password');
 
     }
 
-    public function resetPassword(ResetRequest $request)
+    public function resetPassword(ResetRequest $request): RedirectResponse
     {
 
 
@@ -59,13 +61,13 @@ class ConfirmationController extends Controller
 
     }
 
-    public function newPass(string $token)
+    public function newPass(string $token): View
     {
 
         return view('authorization.new-password', ['token' => $token]);
     }
 
-    public function update(UpdatePasswordRequest $request)
+    public function update(UpdatePasswordRequest $request): RedirectResponse
     {
 
 
@@ -91,7 +93,7 @@ class ConfirmationController extends Controller
     }
 
 
-    public function resetConfirmation()
+    public function resetConfirmation(): View
     {
         return view('authorization..verify.reset-confirmation');
     }
