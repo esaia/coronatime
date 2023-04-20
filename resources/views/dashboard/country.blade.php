@@ -11,9 +11,6 @@
     </form>
 
 
-    {{-- {{ dd(request()->except('sortBy', 'sortOrder')) }} --}}
-
-
     <div
         class="grid grid-cols-1 w-full    rounded-md shadow-md  border border-gray-50 overflow-auto  overflow-y-hidden ">
 
