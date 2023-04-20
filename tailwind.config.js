@@ -11,6 +11,9 @@ module.exports = {
                 2: "2 2 0%",
             },
         },
+        fontFamily: {
+            inter: "Inter",
+        },
     },
     plugins: [],
 };

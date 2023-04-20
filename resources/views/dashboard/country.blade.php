@@ -3,7 +3,7 @@
 <x-dashboard.layout>
 
     <form method="GET" action=""
-        class="my-5  border border-gray-100 w-full max-w-xs flex justify-start items-center rounded-md">
+        class="my-8  border border-gray-100 w-full max-w-xs flex justify-start items-center rounded-md">
         <img src="/images/search.svg" alt="" class="pl-4">
 
         <input type="text" name="search" class="w-full h-full p-3 outline-none rounded-md "

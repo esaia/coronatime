@@ -3,21 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\App;
-use PHPUnit\Framework\Constraint\Count;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(): RedirectResponse
     {
         return to_route('dashboard.worldwide');
     }
 
 
 
-    public function worldwide()
+    public function worldwide(): View
     {
 
         $newCases = Country::sum('confirmed');
@@ -31,7 +29,7 @@ class DashboardController extends Controller
 
 
 
-    public function country()
+    public function country(): View
     {
 
         $sortBy = request('sortBy') ?? 'name';

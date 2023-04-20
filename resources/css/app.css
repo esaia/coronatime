@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply font-inter;
+}
 .statistic-title {
     @apply font-bold md:text-4xl text-2xl;
 }

@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Login\LoginRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('authorization.login');
 
     }
 
 
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request): RedirectResponse
     {
 
 
@@ -47,7 +49,7 @@ class SessionController extends Controller
 
     }
 
-    public function destroy()
+    public function destroy(): RedirectResponse
     {
         auth()->logout();
         return to_route('login');
