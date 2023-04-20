@@ -11,6 +11,8 @@
     </form>
 
 
+    {{-- {{ dd(request()->except('sortBy', 'sortOrder')) }} --}}
+
 
     <div
         class="grid grid-cols-1 w-full    rounded-md shadow-md  border border-gray-50 overflow-auto  overflow-y-hidden ">
@@ -18,7 +20,16 @@
         <div class="w-full flex  bg-gray-50 rounded-t-md  min-w-[800px]   ">
             <div scope="row" class="thead">
                 <a
-                    href="/country?sortBy=name&sortOrder={{ request('sortOrder') == 'asc' ? 'desc' : 'asc' }}&{{ http_build_query(request()->except('sortBy', 'sortOrder')) }}">
+                    href="{{ route(
+                        'dashboard.country',
+                        array_merge(
+                            [
+                                'sortBy' => 'name',
+                                'sortOrder' => request('sortOrder') == 'asc' ? 'desc' : 'asc',
+                            ],
+                            request()->except('sortBy', 'sortOrder'),
+                        ),
+                    ) }}">
                     {{ __('dashboard.location') }}
 
                 </a>
@@ -34,7 +45,16 @@
             </div>
             <div class="thead ">
                 <a
-                    href="/country?sortBy=confirmed&sortOrder={{ request('sortOrder') == 'asc' ? 'desc' : 'asc' }}&{{ http_build_query(request()->except('sortBy', 'sortOrder')) }}">
+                    href="{{ route(
+                        'dashboard.country',
+                        array_merge(
+                            [
+                                'sortBy' => 'confirmed',
+                                'sortOrder' => request('sortOrder') == 'asc' ? 'desc' : 'asc',
+                            ],
+                            request()->except('sortBy', 'sortOrder'),
+                        ),
+                    ) }}">
                     {{ __('dashboard.new_cases') }}
                 </a>
                 @if (request('sortBy') == 'confirmed')
@@ -49,7 +69,16 @@
             </div>
             <div class="thead ">
                 <a
-                    href="/country?sortBy=deaths&sortOrder={{ request('sortOrder') == 'asc' ? 'desc' : 'asc' }}&{{ http_build_query(request()->except('sortBy', 'sortOrder')) }}">
+                    href="{{ route(
+                        'dashboard.country',
+                        array_merge(
+                            [
+                                'sortBy' => 'deaths',
+                                'sortOrder' => request('sortOrder') == 'asc' ? 'desc' : 'asc',
+                            ],
+                            request()->except('sortBy', 'sortOrder'),
+                        ),
+                    ) }}">
                     {{ __('dashboard.death') }}
                 </a>
                 @if (request('sortBy') == 'deaths')
@@ -64,7 +93,16 @@
             </div>
             <div class="thead ">
                 <a
-                    href="/country?sortBy=recovered&sortOrder={{ request('sortOrder') == 'asc' ? 'desc' : 'asc' }}&{{ http_build_query(request()->except('sortBy', 'sortOrder')) }}">
+                    href="{{ route(
+                        'dashboard.country',
+                        array_merge(
+                            [
+                                'sortBy' => 'recovered',
+                                'sortOrder' => request('sortOrder') == 'asc' ? 'desc' : 'asc',
+                            ],
+                            request()->except('sortBy', 'sortOrder'),
+                        ),
+                    ) }}">
                     {{ __('dashboard.recovered') }}
 
                 </a>
