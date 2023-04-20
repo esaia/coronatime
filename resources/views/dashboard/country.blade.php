@@ -10,109 +10,133 @@
             placeholder="{{ __('dashboard.search_placeholder') }}" value="{{ request('search') }}">
     </form>
 
-    <div class="relative overflow-x-auto shadow-md rounded-md  max-h-[500px] ">
-        <table class="w-full text-sm text-left text-gray-800   ">
 
-            <thead class="text-xs text-black  bg-gray-50  w-full sticky top-0  ">
-                <tr class="w-full ">
-                    <th scope="col" class="px-6 py-3 cursor-pointer ">
-                        <div class="flex items-center">
-                            <a
-                                href="/country?sortBy=name&sortOrder={{ request('sortOrder') == 'asc' ? 'desc' : 'asc' }}&{{ http_build_query(request()->except('sortBy', 'sortOrder')) }}">
-                                {{ __('dashboard.location') }}
+    <div
+        class="grid grid-cols-1 w-full    rounded-md shadow-md  border border-gray-50 overflow-auto  overflow-y-hidden ">
 
-                            </a>
+        <div class="w-full flex  bg-gray-50 rounded-t-md  min-w-[800px]   ">
+            <div scope="row" class="thead">
+                <a
+                    href="{{ route(
+                        'dashboard.country',
+                        array_merge(
+                            [
+                                'sortBy' => 'name',
+                                'sortOrder' => request('sortOrder') == 'asc' ? 'desc' : 'asc',
+                            ],
+                            request()->except('sortBy', 'sortOrder'),
+                        ),
+                    ) }}">
+                    {{ __('dashboard.location') }}
 
-                            @if (request('sortBy') == 'name')
-                                @if (request('sortOrder') == 'desc')
-                                    <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
-                                @else
-                                    <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
-                                @endif
-                            @else
-                                <img src="images/sort_none.svg" alt="" class="w-6 h-6">
-                            @endif
-                        </div>
-                    </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer ">
-                        <div class="flex items-center">
-                            <a
-                                href="/country?sortBy=confirmed&sortOrder={{ request('sortOrder') == 'asc' ? 'desc' : 'asc' }}&{{ http_build_query(request()->except('sortBy', 'sortOrder')) }}">
-                                {{ __('dashboard.new_cases') }}
-                            </a>
-                            @if (request('sortBy') == 'confirmed')
-                                @if (request('sortOrder') == 'desc')
-                                    <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
-                                @else
-                                    <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
-                                @endif
-                            @else
-                                <img src="images/sort_none.svg" alt="" class="w-6 h-6">
-                            @endif
-                        </div>
+                </a>
+                @if (request('sortBy') == 'name')
+                    @if (request('sortOrder') == 'desc')
+                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
+                    @else
+                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
+                    @endif
+                @else
+                    <img src="images/sort_none.svg" alt="" class="w-6 h-6">
+                @endif
+            </div>
+            <div class="thead ">
+                <a
+                    href="{{ route(
+                        'dashboard.country',
+                        array_merge(
+                            [
+                                'sortBy' => 'confirmed',
+                                'sortOrder' => request('sortOrder') == 'asc' ? 'desc' : 'asc',
+                            ],
+                            request()->except('sortBy', 'sortOrder'),
+                        ),
+                    ) }}">
+                    {{ __('dashboard.new_cases') }}
+                </a>
+                @if (request('sortBy') == 'confirmed')
+                    @if (request('sortOrder') == 'desc')
+                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
+                    @else
+                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
+                    @endif
+                @else
+                    <img src="images/sort_none.svg" alt="" class="w-6 h-6">
+                @endif
+            </div>
+            <div class="thead ">
+                <a
+                    href="{{ route(
+                        'dashboard.country',
+                        array_merge(
+                            [
+                                'sortBy' => 'deaths',
+                                'sortOrder' => request('sortOrder') == 'asc' ? 'desc' : 'asc',
+                            ],
+                            request()->except('sortBy', 'sortOrder'),
+                        ),
+                    ) }}">
+                    {{ __('dashboard.death') }}
+                </a>
+                @if (request('sortBy') == 'deaths')
+                    @if (request('sortOrder') == 'desc')
+                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
+                    @else
+                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
+                    @endif
+                @else
+                    <img src="images/sort_none.svg" alt="" class="w-6 h-6">
+                @endif
+            </div>
+            <div class="thead ">
+                <a
+                    href="{{ route(
+                        'dashboard.country',
+                        array_merge(
+                            [
+                                'sortBy' => 'recovered',
+                                'sortOrder' => request('sortOrder') == 'asc' ? 'desc' : 'asc',
+                            ],
+                            request()->except('sortBy', 'sortOrder'),
+                        ),
+                    ) }}">
+                    {{ __('dashboard.recovered') }}
 
-                    </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer ">
-                        <div class="flex items-center">
+                </a>
 
-                            <a
-                                href="/country?sortBy=deaths&sortOrder={{ request('sortOrder') == 'asc' ? 'desc' : 'asc' }}&{{ http_build_query(request()->except('sortBy', 'sortOrder')) }}">
-                                {{ __('dashboard.death') }}
-                            </a>
-                            @if (request('sortBy') == 'deaths')
-                                @if (request('sortOrder') == 'desc')
-                                    <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
-                                @else
-                                    <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
-                                @endif
-                            @else
-                                <img src="images/sort_none.svg" alt="" class="w-6 h-6">
-                            @endif
-                        </div>
-                    </th>
-                    <th scope="col" class="px-6 py-3 cursor-pointer ">
-                        <div class="flex items-center">
-                            <a
-                                href="/country?sortBy=recovered&sortOrder={{ request('sortOrder') == 'asc' ? 'desc' : 'asc' }}&{{ http_build_query(request()->except('sortBy', 'sortOrder')) }}">
-                                {{ __('dashboard.recovered') }}
+                @if (request('sortBy') == 'recovered')
+                    @if (request('sortOrder') == 'desc')
+                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
+                    @else
+                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
+                    @endif
+                @else
+                    <img src="images/sort_none.svg" alt="" class="w-6 h-6">
+                @endif
+            </div>
+        </div>
 
-                            </a>
+        <div class=" max-h-[500px] min-w-[800px] overflow-y-auto  ">
 
-                            @if (request('sortBy') == 'recovered')
-                                @if (request('sortOrder') == 'desc')
-                                    <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
-                                @else
-                                    <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
-                                @endif
-                            @else
-                                <img src="images/sort_none.svg" alt="" class="w-6 h-6">
-                            @endif
-                        </div>
+            @foreach ($countries as $country)
+                <div class="w-full flex border-b ">
 
-                    </th>
-                </tr>
-            </thead>
+                    <div class="px-6 py-4 flex-1   ">
+                        {{ $country['name'] }}
+                    </div>
+                    <div class="px-6 py-4 flex-1    ">
+                        {{ $country['confirmed'] }}
+                    </div>
+                    <div class="px-6 py-4 flex-1 ">
+                        {{ $country['deaths'] }}
+                    </div>
+                    <div class="px-6 py-4 flex-1   ">
+                        {{ $country['recovered'] }}
 
-            <tbody>
-                @foreach ($countries as $country)
-                    <tr class="bg-white border-b ">
-                        <th scope="row" class="px-6 py-4 font-medium ">
-                            {{ $country['name'] }}
-                        </th>
-                        <td class="px-6 py-4">
-                            {{ $country['confirmed'] }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $country['deaths'] }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $country['recovered'] }}
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-
-        </table>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 
 

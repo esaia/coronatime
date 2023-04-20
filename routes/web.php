@@ -51,6 +51,7 @@ Route::controller(ConfirmationController::class)->group(function () {
 
 Route::controller(DashboardController::class)->group(function () {
     Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/', 'index')->name('home');
         Route::get('/worldwide', 'worldwide')->name('dashboard.worldwide');
         Route::get('/country', 'country')->name('dashboard.country');
 

@@ -10,6 +10,13 @@ use PHPUnit\Framework\Constraint\Count;
 
 class DashboardController extends Controller
 {
+    public function index()
+    {
+        return to_route('dashboard.worldwide');
+    }
+
+
+
     public function worldwide()
     {
 
@@ -24,10 +31,10 @@ class DashboardController extends Controller
 
 
 
-    public function country(Request $request)
+    public function country()
     {
 
-        $sortBy = request('sortBy') ?? 'confirmed';
+        $sortBy = request('sortBy') ?? 'name';
         $sortOrder = request('sortOrder') ?? 'asc';
 
         $countries = Country::latest()->filter(request(['search']))->get();
