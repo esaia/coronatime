@@ -15,7 +15,7 @@
 
             @unless ($errors->has($name))
                 @if (!empty(old($name)))
-                    <img src="images/correct.svg" class="w-4" alt="">
+                    <x-icons.correct />
                 @endif
             @endunless
 
@@ -23,8 +23,8 @@
 
 
         @error($name)
-            <p class="text-[#CC1E1E] flex gap-2">
-                <img src="images/errorIcon.svg" alt=""> {{ $message }}
+            <p class="text-[#CC1E1E] flex gap-2 items-center">
+                <x-icons.error /> {{ $message }}
             </p>
         @enderror
     </div>

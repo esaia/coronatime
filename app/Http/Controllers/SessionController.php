@@ -2,24 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\Login\LoginRequest;
-use Illuminate\Contracts\View\View;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
-    public function index(): View
-    {
-        return view('authorization.login');
-
-    }
-
-
     public function store(LoginRequest $request): RedirectResponse
     {
-
 
         $attributes = $request->validated();
 

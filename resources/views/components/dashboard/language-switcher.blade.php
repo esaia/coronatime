@@ -2,9 +2,9 @@
     class="flex gap-2 cursor-pointer relative">
 
     @csrf
-    <div class="flex gap-2" x-on:click="show = ! show ">
+    <div class="flex items-center gap-2" x-on:click="show = ! show ">
         <h2>{{ App::isLocale('en') ? 'English' : 'Georgia' }}</h2>
-        <img src="images/arrow.svg" alt="">
+        <x-icons.arrow />
     </div>
 
     <div x-show="show"

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Login;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePasswordRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,9 +14,9 @@ class UpdatePasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-              'token' => 'required',
-              'email' => 'required|email',
-              'password' => 'required|min:3|confirmed',
+            'email' => 'required|min:3',
+            'password' => 'required',
+            'remember' => 'nullable'
         ];
     }
 }
