@@ -7,20 +7,20 @@
     <div class="grid grid-cols-2 md:grid-cols-3 gap-5   h-[250px]  mt-12">
 
         <div class="bg-violet-100 statistic-div col-span-2 md:col-span-1">
-            <img src="/images/statistic1.svg" alt="">
+            <x-icons.statistic_1 />
             <p class="text-xl">{{ __('dashboard.new_cases') }}</p>
             <h3 class="statistic-title  text-blue-800 ">{{ number_format($newCases) }}</h3>
         </div>
 
         <div class="bg-emerald-50 statistic-div ">
-            <img src="/images/statistic3.svg" alt="">
+            <x-icons.statistic_3 />
             <p class="text-xl">{{ __('dashboard.recovered') }}</p>
             <h3 class="statistic-title  text-green-600 ">{{ number_format($recovered) }}</h3>
         </div>
 
 
         <div class="bg-amber-50 statistic-div ">
-            <img src="/images/statistic2.svg" alt="">
+            <x-icons.statistic_2 />
             <p class="text-xl">{{ __('dashboard.death') }}</p>
             <h3 class="statistic-title text-yellow-500 ">{{ number_format($deaths) }}</h3>
         </div>

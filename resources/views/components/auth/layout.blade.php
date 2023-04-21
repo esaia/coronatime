@@ -13,7 +13,7 @@
 
     {{-- Image --}}
     <div class=" md:block  hidden  flex-1 ">
-        <img src="/images/img-1.png" class="w-full min-h-screen h-full object-cover" alt="">
+        <img src="/images/background.png" class="w-full min-h-screen h-full object-cover" alt="">
     </div>
 
 

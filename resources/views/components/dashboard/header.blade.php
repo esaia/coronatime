@@ -18,8 +18,8 @@
 
             <div x-data="{ show: false }" x-on:click.away="show = false" class="flex gap-2 cursor-pointer relative">
 
-                <div class="flex gap-2" x-on:click="show = ! show ">
-                    <img src="images/burger.svg" class="cursor-pointer md:hidden" />
+                <div class="flex gap-2 cursor-pointer md:hidden" x-on:click="show = ! show ">
+                    <x-icons.burger />
 
                 </div>
 

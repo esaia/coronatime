@@ -4,7 +4,9 @@
 
     <form method="GET" action=""
         class="my-8  border border-gray-100 w-full max-w-xs flex justify-start items-center rounded-md">
-        <img src="/images/search.svg" alt="" class="pl-4">
+        <div class="pl-4">
+            <x-icons.search />
+        </div>
 
         <input type="text" name="search" class="w-full h-full p-3 outline-none rounded-md "
             placeholder="{{ __('dashboard.search_placeholder') }}" value="{{ request('search') }}">
@@ -32,12 +34,12 @@
                 </a>
                 @if (request('sortBy') == 'name')
                     @if (request('sortOrder') == 'desc')
-                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
+                        <x-icons.sort-desc />
                     @else
-                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
+                        <x-icons.sort-asc />
                     @endif
                 @else
-                    <img src="images/sort_none.svg" alt="" class="w-6 h-6">
+                    <x-icons.sort-none />
                 @endif
             </div>
             <div class="thead ">
@@ -56,12 +58,12 @@
                 </a>
                 @if (request('sortBy') == 'confirmed')
                     @if (request('sortOrder') == 'desc')
-                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
+                        <x-icons.sort-desc />
                     @else
-                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
+                        <x-icons.sort-asc />
                     @endif
                 @else
-                    <img src="images/sort_none.svg" alt="" class="w-6 h-6">
+                    <x-icons.sort-none />
                 @endif
             </div>
             <div class="thead ">
@@ -80,12 +82,12 @@
                 </a>
                 @if (request('sortBy') == 'deaths')
                     @if (request('sortOrder') == 'desc')
-                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
+                        <x-icons.sort-desc />
                     @else
-                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
+                        <x-icons.sort-asc />
                     @endif
                 @else
-                    <img src="images/sort_none.svg" alt="" class="w-6 h-6">
+                    <x-icons.sort-none />
                 @endif
             </div>
             <div class="thead ">
@@ -106,12 +108,13 @@
 
                 @if (request('sortBy') == 'recovered')
                     @if (request('sortOrder') == 'desc')
-                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6">
+                        <x-icons.sort-desc />
                     @else
-                        <img src="images/sort_desc.svg" alt="" class="w-6 h-6 rotate-180">
+                        <x-icons.sort-asc />
                     @endif
                 @else
-                    <img src="images/sort_none.svg" alt="" class="w-6 h-6">
+                    <x-icons.sort-none />
+
                 @endif
             </div>
         </div>

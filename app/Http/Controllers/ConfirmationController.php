@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Login\ResetRequest;
-use App\Http\Requests\Login\UpdatePasswordRequest;
+use App\Http\Requests\ResetRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Models\User;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -24,28 +23,6 @@ class ConfirmationController extends Controller
         return to_route('confirmation.register_confirmation');
     }
 
-
-
-    public function emailconfirm(): View
-    {
-        return view('authorization.verify.email-confirmation');
-
-    }
-
-
-    public function passwordconfirm(): View
-    {
-        return view('authorization.verify.password-confirmation');
-    }
-
-
-
-
-    public function reset(): View
-    {
-        return view('authorization.reset-password');
-
-    }
 
     public function resetPassword(ResetRequest $request): RedirectResponse
     {

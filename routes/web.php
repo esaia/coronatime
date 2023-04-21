@@ -9,7 +9,7 @@ use App\Http\Controllers\ConfirmationController;
 
 Route::controller(SessionController::class)->group(function () {
     Route::middleware('guest')->group(function () {
-        Route::get('/login', 'index')->name('login');
+        Route::view('/login', 'authorization.login')->name('login');
         Route::post('/login', 'store')->name('login.store');
     });
 
@@ -18,7 +18,7 @@ Route::controller(SessionController::class)->group(function () {
 
 Route::controller(RegisterController::class)->group(function () {
     Route::middleware('guest')->group(function () {
-        Route::get('/register', 'index')->name('register');
+        Route::view('/register', 'authorization.register')->name('register');
         Route::post('/register', 'store')->name('register.store');
 
     });
@@ -30,20 +30,17 @@ Route::post('/language', [LanguageController::class, 'index'])->name('language')
 
 Route::controller(ConfirmationController::class)->group(function () {
     Route::get('/email/verify/{id}/{hash}', 'verify')->middleware(['auth', 'signed'])->name('verification.verify');
-
-
-    Route::get('/confirmation', 'emailconfirm')->middleware('auth')->name('verification.notice');
-    Route::get('/confirm', 'passwordconfirm')->middleware('guest')->name('password_verify');
-
-    Route::get('/reset', 'reset')->middleware('guest')->name('password.request');
-    Route::post('/forgot-password', 'resetPassword')->middleware('guest')->name('password.email');
-
-    Route::get('/reset-password/{token}', 'newPass')->middleware('guest')->name('password.reset');
-    Route::post('/reset-password', 'update')->middleware('guest')->name('password.update');
-
-
+    Route::view('/confirmation', 'authorization.verify.email-confirmation')->middleware('auth')->name('verification.notice');
     Route::get('/reset-confirmation', 'resetConfirmation')->name('confirmation.reset_confirmation');
-    Route::get('/register-confirmation', 'registerConfirmation')->middleware('guest')->name('confirmation.register_confirmation');
+
+    Route::middleware('guest')->group(function () {
+        Route::view('/confirm', 'authorization.verify.password-confirmation')->name('password_verify');
+        Route::view('/reset', 'authorization.reset-password')->name('password.request');
+        Route::post('/forgot-password', 'resetPassword')->name('password.email');
+        Route::get('/reset-password/{token}', 'newPass')->name('password.reset');
+        Route::post('/reset-password', 'update')->name('password.update');
+        Route::get('/register-confirmation', 'registerConfirmation')->name('confirmation.register_confirmation');
+    });
 
 });
 
@@ -51,10 +48,8 @@ Route::controller(ConfirmationController::class)->group(function () {
 
 Route::controller(DashboardController::class)->group(function () {
     Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/', 'index')->name('home');
+        Route::redirect('/', '/worldwide')->name('home');
         Route::get('/worldwide', 'worldwide')->name('dashboard.worldwide');
         Route::get('/country', 'country')->name('dashboard.country');
-
-
     });
 });
