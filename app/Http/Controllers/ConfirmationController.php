@@ -40,7 +40,6 @@ class ConfirmationController extends Controller
 
     public function newPass(string $token): View
     {
-
         return view('authorization.new-password', ['token' => $token]);
     }
 

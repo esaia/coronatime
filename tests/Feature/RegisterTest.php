@@ -4,12 +4,47 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_register_confirmation_view_is_rendering()
+    {
+        $response = $this->get(route('confirmation.register_confirmation'));
+        $response->assertStatus(200);
+        $response->assertSee('Your account is confirmed, you can sign in');
+    }
+
+    public function test_register_user_verify()
+    {
+
+        $response = $this->post(
+            route('register.store'),
+            ['username' => 'user', 'email' => 'user@gmail.com', 'password' => 'password', 'password_confirmation' => 'password']
+        );
+        $response->assertRedirect(route('verification.notice'));
+        $this->followRedirects($response)->assertSee('We have sent you a confirmation email');
+
+        $user = User::first();
+
+        $verificationUrl = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),
+            [
+                'id' => $user->id,
+                'hash' => sha1($user->getEmailForVerification())
+            ]
+        );
+
+        $response = $this->get($verificationUrl);
+        $response->assertStatus(302);
+        $this->followRedirects($response)->assertViewIs('authorization.verify.register-confirmation');
+    }
+
 
     public function test_register_should_see_register_form()
     {
