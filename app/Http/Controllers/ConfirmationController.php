@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ResetRequest;
-use App\Http\Requests\UpdatePasswordRequest;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Routing\Controller;
+use App\Http\Requests\ResetRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Contracts\View\View;
+use App\Http\Requests\UpdatePasswordRequest;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\RedirectResponse;
 
 class ConfirmationController extends Controller
 {
@@ -37,6 +38,13 @@ class ConfirmationController extends Controller
                     : back()->withErrors(['email' => __($status)]);
 
     }
+
+    public function resend(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    }
+
 
     public function newPass(string $token): View
     {

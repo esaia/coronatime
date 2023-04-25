@@ -31,6 +31,10 @@ Route::post('/language', [LanguageController::class, 'index'])->name('language')
 Route::controller(ConfirmationController::class)->group(function () {
     Route::get('/email/verify/{id}/{hash}', 'verify')->middleware(['auth', 'signed'])->name('verification.verify');
     Route::view('/confirmation', 'authorization.verify.email-confirmation')->middleware('auth')->name('verification.notice');
+
+    Route::post('/email/verification-notification', 'resend')->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
     Route::get('/reset-confirmation', 'resetConfirmation')->name('confirmation.reset_confirmation');
 
     Route::middleware('guest')->group(function () {

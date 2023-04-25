@@ -3,12 +3,12 @@
 <x-dashboard.layout>
 
     <form method="GET" action=""
-        class="my-8  border border-gray-100 w-full max-w-xs flex justify-start items-center rounded-md">
+        class="my-8  border border-transparent md:border-gray-100 w-full md:max-w-xs flex justify-start items-center rounded-md  ">
         <div class="pl-4">
             <x-icons.search />
         </div>
 
-        <input type="text" name="search" class="w-full h-full p-3 outline-none rounded-md "
+        <input type="text" name="search" class="w-full h-full p-3 outline-none rounded-md  "
             placeholder="{{ __('dashboard.search_placeholder') }}" value="{{ request('search') }}">
     </form>
 
@@ -16,7 +16,7 @@
     <div
         class="grid grid-cols-1 w-full    rounded-md shadow-md  border border-gray-50 overflow-auto  overflow-y-hidden ">
 
-        <div class="w-full flex  bg-gray-50 rounded-t-md  min-w-[800px]   ">
+        <div class="w-full flex  bg-gray-50 rounded-t-md  min-w-[600px]   ">
             <div scope="row" class="thead">
                 <a
                     href="{{ route(
@@ -119,7 +119,7 @@
             </div>
         </div>
 
-        <div class=" max-h-[500px] min-w-[800px] overflow-y-auto  ">
+        <div class=" max-h-[500px] min-w-[600px] overflow-y-auto  ">
 
             @foreach ($countries as $country)
                 <div class="w-full flex border-b ">

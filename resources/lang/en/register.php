@@ -19,7 +19,7 @@ return [
 
     'remember' => 'Remember this device',
 
-    'button'=>   'Sign UP',
+    'button'=>   'SIGN UP',
     'have_account'=>   'Already have an account?',
     'sign_up' => 'Log in'
 
