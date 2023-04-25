@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage())
-            ->view(App::isLocale('en') ? 'email.verify' : 'email.verify-ka', ['url' => $url])
+            ->view('email.verify', ['url' => $url])
                 ->subject('Verify Email Address')
                 ->line('Click the button below to verify your email address.')
                 ->action('Verify Email Address', $url);
@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
             $url = $url . '?email=' . request()->input('email');
 
             return (new MailMessage())
-            ->view(App::isLocale('en') ? 'email.reset' : 'email.reset-ka', ['url' => $url])
+            ->view('email.reset', ['url' => $url])
                 ->subject('Recover password');
         });
 
