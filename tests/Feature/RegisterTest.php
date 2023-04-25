@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterTest extends TestCase
@@ -45,6 +46,16 @@ class RegisterTest extends TestCase
         $this->followRedirects($response)->assertViewIs('authorization.verify.register-confirmation');
     }
 
+    public function test_register_resend_confirmation_to_email()
+    {
+        $user = User::factory()->create();
+        Notification::fake();
+        $this->actingAs($user);
+        $response = $this->post(route('verification.send'));
+        $response->assertStatus(302);
+        Notification::assertSentTo($user, \Illuminate\Auth\Notifications\VerifyEmail::class);
+        $response->assertSessionHas('message', 'Verification link sent!');
+    }
 
     public function test_register_should_see_register_form()
     {
