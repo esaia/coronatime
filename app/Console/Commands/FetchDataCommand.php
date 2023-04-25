@@ -54,7 +54,7 @@ class FetchDataCommand extends Command
 
                 $this->info('API data fetched and stored in countries table successfully!');
             } else {
-                $this->error('Failed to fetch data from API: ' . $response->body());
+                $this->error('Failed to fetch data from API');
             }
 
         }
