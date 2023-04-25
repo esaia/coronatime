@@ -7,19 +7,7 @@
     <title>Reset Password</title>
 </head>
 
-<style>
-    .button {
-        display: inline-block;
-        background-color: #0fba68;
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 15px 40px;
 
-        border-radius: 10px;
-        margin-top: 10px;
-    }
-</style>
 
 <body style="
       font-family: Arial, sans-serif;
@@ -36,9 +24,11 @@
         <p style="margin-top: -10px;">
             Click the button below to recover your password:
         </p>
-        <a class="button" href="{{ $url }}">
+        <a href="{{ $url }}"
+            style="display: inline-block; background-color: #0fba68; color: #fff; text-decoration: none; font-weight: bold; padding: 15px 100px;  border-radius: 10px; margin-top: 10px;">
             RECOVER PASSWORD
         </a>
+
     </div>
 </body>
 

@@ -15,7 +15,9 @@ return [
 
     'search_placeholder' => 'Search by country',
 
-    'logout' => 'Log Out'
+    'logout' => 'Log Out',
+
+    'resend' => 'Resend'
 
 
 ];
