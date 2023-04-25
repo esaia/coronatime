@@ -79,7 +79,7 @@ class ConfirmationController extends Controller
 
     public function resetConfirmation(): View
     {
-        return view('authorization..verify.reset-confirmation');
+        return view('authorization.verify.reset-confirmation');
     }
 
     public function registerConfirmation()
