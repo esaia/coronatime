@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterTest extends TestCase
@@ -53,7 +54,7 @@ class RegisterTest extends TestCase
         $this->actingAs($user);
         $response = $this->post(route('verification.send'));
         $response->assertStatus(302);
-        Notification::assertSentTo($user, \Illuminate\Auth\Notifications\VerifyEmail::class);
+        Notification::assertSentTo($user, VerifyEmail::class);
         $response->assertSessionHas('message', 'Verification link sent!');
     }
 
