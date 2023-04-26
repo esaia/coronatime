@@ -5,11 +5,11 @@
         <label class="font-bold" for="">{{ $label }}</label>
 
         <div
-            class="flex rounded border-[1px]  border-gray-100  focus:border-[#2029F3] focus:ring-blue-500 px-5 
+            class="flex  border-[1px]  border-gray-100  focus:border-[#2029F3] focus:ring-blue-500  rounded-md 
             {{ $errors->has($name) ? ' border-red-400' : '' }}  {{ !empty(old($name)) ? 'border-green-400' : '' }}">
 
 
-            <input name="{{ $name }}" type="{{ $type }}" class="   flex-1  outline-none  py-3 "
+            <input name="{{ $name }}" type="{{ $type }}" class="   flex-1  outline-none p-4   "
                 placeholder="{{ $placeholder }}" value="{{ old($name) }}">
 
 

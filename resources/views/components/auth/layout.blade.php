@@ -4,8 +4,8 @@
     {{-- Form --}}
 
 
-    <div class="flex-2  m-3 p-3 md:px-16 md:py-8">
-        <div class="w-full md:max-w-xl">
+    <div class="flex-2 p-3  flex px-5 md:px-20  justify-center items-start  xl:block  xl:pl-48 py-8">
+        <div class="w-full max-w-xl">
 
             {{ $slot }}
         </div>
