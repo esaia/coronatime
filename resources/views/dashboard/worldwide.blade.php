@@ -4,7 +4,7 @@
 <x-dashboard.layout>
 
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-5   h-[250px]  mt-12">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5  h-[250px]  mt-12 px-6">
 
         <div class="bg-violet-100 statistic-div col-span-2 md:col-span-1">
             <x-icons.statistic-1 />

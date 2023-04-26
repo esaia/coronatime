@@ -14,10 +14,10 @@
 
 
     <div
-        class="grid grid-cols-1 w-full    rounded-md shadow-md  border border-gray-50 overflow-auto  overflow-y-hidden ">
+        class="grid grid-cols-1 w-full    rounded-md shadow-md  border border-gray-50  overflow-x-hidden overflow-y-hidden ">
 
-        <div class="w-full flex  bg-gray-50 rounded-t-md  min-w-[600px]   ">
-            <div scope="row" class="thead">
+        <div class="w-full flex  bg-gray-50 rounded-t-md     ">
+            <div scope="row" class="thead  min-w-[20px]">
                 <a
                     href="{{ route(
                         'dashboard.country',
@@ -32,15 +32,18 @@
                     {{ __('dashboard.location') }}
 
                 </a>
-                @if (request('sortBy') == 'name')
-                    @if (request('sortOrder') == 'desc')
-                        <x-icons.sort-desc />
+                <div class="w-20">
+                    @if (request('sortBy') == 'name')
+                        @if (request('sortOrder') == 'desc')
+                            <x-icons.sort-desc />
+                        @else
+                            <x-icons.sort-asc />
+                        @endif
                     @else
-                        <x-icons.sort-asc />
+                        <x-icons.sort-none />
                     @endif
-                @else
-                    <x-icons.sort-none />
-                @endif
+                </div>
+
             </div>
             <div class="thead ">
                 <a
@@ -56,15 +59,20 @@
                     ) }}">
                     {{ __('dashboard.new_cases') }}
                 </a>
-                @if (request('sortBy') == 'confirmed')
-                    @if (request('sortOrder') == 'desc')
-                        <x-icons.sort-desc />
+                <div class="w-20">
+
+
+                    @if (request('sortBy') == 'confirmed')
+                        @if (request('sortOrder') == 'desc')
+                            <x-icons.sort-desc />
+                        @else
+                            <x-icons.sort-asc />
+                        @endif
                     @else
-                        <x-icons.sort-asc />
+                        <x-icons.sort-none />
                     @endif
-                @else
-                    <x-icons.sort-none />
-                @endif
+                </div>
+
             </div>
             <div class="thead ">
                 <a
@@ -80,15 +88,19 @@
                     ) }}">
                     {{ __('dashboard.death') }}
                 </a>
-                @if (request('sortBy') == 'deaths')
-                    @if (request('sortOrder') == 'desc')
-                        <x-icons.sort-desc />
+                <div class="w-20">
+
+                    @if (request('sortBy') == 'deaths')
+                        @if (request('sortOrder') == 'desc')
+                            <x-icons.sort-desc />
+                        @else
+                            <x-icons.sort-asc />
+                        @endif
                     @else
-                        <x-icons.sort-asc />
+                        <x-icons.sort-none />
                     @endif
-                @else
-                    <x-icons.sort-none />
-                @endif
+                </div>
+
             </div>
             <div class="thead ">
                 <a
@@ -106,34 +118,38 @@
 
                 </a>
 
-                @if (request('sortBy') == 'recovered')
-                    @if (request('sortOrder') == 'desc')
-                        <x-icons.sort-desc />
-                    @else
-                        <x-icons.sort-asc />
-                    @endif
-                @else
-                    <x-icons.sort-none />
+                <div class="w-20">
 
-                @endif
+                    @if (request('sortBy') == 'recovered')
+                        @if (request('sortOrder') == 'desc')
+                            <x-icons.sort-desc />
+                        @else
+                            <x-icons.sort-asc />
+                        @endif
+                    @else
+                        <x-icons.sort-none />
+
+                    @endif
+                </div>
+
             </div>
         </div>
 
-        <div class=" max-h-[500px] min-w-[600px] overflow-y-auto  ">
+        <div class=" max-h-[500px]  overflow-x-hidden  overflow-y-auto  ">
 
             @foreach ($countries as $country)
                 <div class="w-full flex border-b ">
 
-                    <div class="px-6 py-4 flex-1   ">
+                    <div class="p-4 flex-1 flex min-w-[20px]  ">
                         {{ $country['name'] }}
                     </div>
-                    <div class="px-6 py-4 flex-1    ">
+                    <div class="p-4 flex-1 flex   ">
                         {{ $country['confirmed'] }}
                     </div>
-                    <div class="px-6 py-4 flex-1 ">
+                    <div class="p-4 flex-1 flex">
                         {{ $country['deaths'] }}
                     </div>
-                    <div class="px-6 py-4 flex-1   ">
+                    <div class="p-4 flex-1 flex  ">
                         {{ $country['recovered'] }}
 
                     </div>

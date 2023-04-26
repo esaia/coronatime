@@ -14,7 +14,7 @@ body {
 }
 
 .thead {
-    @apply px-6 py-4  flex-1 flex font-semibold min-w-[50px];
+    @apply py-4 pl-4 flex   flex-1  font-semibold min-w-[50px];
 }
 
 /* Hide the scrollbar track */
