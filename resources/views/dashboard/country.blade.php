@@ -30,7 +30,10 @@
                                 request()->except('sortBy', 'sortOrder'),
                             ),
                         ) }}">
-                        {{ __('dashboard.location') }}
+                        {{ Str::limit(__('dashboard.location'), 10) }}
+
+
+
 
                     </a>
                     <div class="w-20">
@@ -58,7 +61,16 @@
                                 request()->except('sortBy', 'sortOrder'),
                             ),
                         ) }}">
-                        {{ __('dashboard.new_cases') }}
+
+
+                        <div class=" block md:hidden ">
+                            {{ Str::limit(__('dashboard.new_cases'), 10) }}
+                        </div>
+                        <div class="hidden md:block">
+                            {{ __('dashboard.new_cases') }}
+                        </div>
+
+
                     </a>
                     <div class="w-20">
 
@@ -76,7 +88,7 @@
 
                 </div>
                 <div class="thead ">
-                    <a
+                    <div
                         href="{{ route(
                             'dashboard.country',
                             array_merge(
@@ -87,8 +99,16 @@
                                 request()->except('sortBy', 'sortOrder'),
                             ),
                         ) }}">
-                        {{ __('dashboard.death') }}
-                    </a>
+
+
+                        <div class=" block md:hidden ">
+                            {{ Str::limit(__('dashboard.death'), 7) }}
+                        </div>
+                        <div class="hidden md:block">
+                            {{ __('dashboard.death') }}
+                        </div>
+
+                    </div>
                     <div class="w-20">
 
                         @if (request('sortBy') == 'deaths')
@@ -115,7 +135,16 @@
                                 request()->except('sortBy', 'sortOrder'),
                             ),
                         ) }}">
-                        {{ __('dashboard.recovered') }}
+
+
+                        <div class=" block md:hidden ">
+                            {{ Str::limit(__('dashboard.recovered'), 7) }}
+                        </div>
+                        <div class="hidden md:block">
+                            {{ __('dashboard.recovered') }}
+
+                        </div>
+
 
                     </a>
 
